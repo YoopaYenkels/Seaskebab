@@ -1,18 +1,48 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Trident.tscn" type="PackedScene" id=2]
+[ext_resource path="res://fish.tscn" type="PackedScene" id=3]
+[ext_resource path="res://player.gd" type="Script" id=4]
+[ext_resource path="res://main.gd" type="Script" id=5]
 
-[node name="Node2D" type="Node2D"]
+[node name="Main" type="Node2D"]
+script = ExtResource( 5 )
+fish_scene = ExtResource( 3 )
 
 [node name="BG" type="ColorRect" parent="."]
 margin_right = 512.0
 margin_bottom = 300.0
-color = Color( 0.207843, 0.533333, 0.662745, 0.882353 )
+color = Color( 0.231373, 0.458824, 0.556863, 1 )
+
+[node name="Line2D" type="Line2D" parent="."]
+position = Vector2( 183, 220 )
+scale = Vector2( 10, 10 )
+points = PoolVector2Array( 8, -4, 32, -4 )
+width = 1.0
+default_color = Color( 0.721569, 0.721569, 0.721569, 1 )
+
+[node name="Line2D2" type="Line2D" parent="."]
+position = Vector2( 183, 284 )
+scale = Vector2( 10, 10 )
+points = PoolVector2Array( 8, -4, 32, -4 )
+width = 1.0
+default_color = Color( 0.721569, 0.721569, 0.721569, 1 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 154, 220 )
+position = Vector2( 103, 220 )
 scale = Vector2( 10, 10 )
+script = ExtResource( 4 )
 
 [node name="Trident" parent="Player" instance=ExtResource( 2 )]
 position = Vector2( 8, -1.90735e-06 )
+
+[node name="SpawnTimer" type="Timer" parent="."]
+wait_time = 0.8
+autostart = true
+
+[node name="SpawnLocation" type="Node2D" parent="."]
+position = Vector2( 533, 213 )
+z_as_relative = false
+
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_SpawnTimer_timeout"]
