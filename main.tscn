@@ -16,6 +16,7 @@ margin_bottom = 300.0
 color = Color( 0.231373, 0.458824, 0.556863, 1 )
 
 [node name="Line2D" type="Line2D" parent="."]
+visible = false
 position = Vector2( 183, 220 )
 scale = Vector2( 10, 10 )
 points = PoolVector2Array( 8, -4, 32, -4 )
@@ -23,19 +24,12 @@ width = 1.0
 default_color = Color( 0.721569, 0.721569, 0.721569, 1 )
 
 [node name="Line2D2" type="Line2D" parent="."]
+visible = false
 position = Vector2( 183, 284 )
 scale = Vector2( 10, 10 )
 points = PoolVector2Array( 8, -4, 32, -4 )
 width = 1.0
 default_color = Color( 0.721569, 0.721569, 0.721569, 1 )
-
-[node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 103, 220 )
-scale = Vector2( 10, 10 )
-script = ExtResource( 4 )
-
-[node name="Trident" parent="Player" instance=ExtResource( 2 )]
-position = Vector2( 8, -1.90735e-06 )
 
 [node name="SpawnTimer" type="Timer" parent="."]
 wait_time = 0.8
@@ -44,5 +38,13 @@ autostart = true
 [node name="SpawnLocation" type="Node2D" parent="."]
 position = Vector2( 533, 213 )
 z_as_relative = false
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 103, 220 )
+scale = Vector2( 10, 10 )
+script = ExtResource( 4 )
+
+[node name="Trident" parent="Player" instance=ExtResource( 2 )]
+position = Vector2( 8, -1.90735e-06 )
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_SpawnTimer_timeout"]

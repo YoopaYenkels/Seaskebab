@@ -12,5 +12,11 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta: float) -> void:
-#	pass
+func _process(delta: float) -> void:
+	if Input.is_action_pressed("ui_up"):
+		$AnimationPlayer.play("idle_up")
+	elif Input.is_action_pressed("ui_down"):
+		$AnimationPlayer.play("idle_down")
+	else:
+		$AnimationPlayer.play("idle_mid")
+
